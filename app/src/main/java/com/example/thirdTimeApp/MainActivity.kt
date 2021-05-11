@@ -3,8 +3,11 @@ package com.example.thirdTimeApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import com.example.toastapp.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,8 +17,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        SpHelper.init(this) { message ->
-            makeSnackbar(message)
+        if (savedInstanceState == null){
+            lifecycleScope.launch(IO) {
+                SpHelper.init(applicationContext) { message ->
+                    makeSnackbar(message)
+                }
+            }
         }
 
     }

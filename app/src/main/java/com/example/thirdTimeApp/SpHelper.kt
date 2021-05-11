@@ -2,6 +2,8 @@ package com.example.thirdTimeApp
 
 import android.content.Context
 import android.content.SharedPreferences
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.withContext
 
 object SpHelper {
 
@@ -9,7 +11,7 @@ object SpHelper {
     private const val SP_NAME = "shared_pref_counter"
     private const val sp_key = "key"
 
-    fun init(context: Context, clb: (String) -> Unit){
+    suspend fun init(context: Context, clb: (String) -> Unit){
         sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
         if (sp.getInt(sp_key, 0) == 0) {
             saveInSP(1)
@@ -18,12 +20,12 @@ object SpHelper {
             counter++
             saveInSP(counter)
             if (counter == 3) {
-                clb("You logged in to the app for the third time")
+                clb("This is the third time You've launched this app.")
             }
         }
     }
 
-    private fun saveInSP(counter: Int) {
+    private suspend fun saveInSP(counter: Int) = withContext(IO) {
         sp.edit()
             .putInt(sp_key, counter)
             .apply()
