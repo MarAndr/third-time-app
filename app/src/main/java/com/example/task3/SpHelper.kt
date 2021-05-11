@@ -1,4 +1,4 @@
-package com.example.thirdTimeApp
+package com.example.task3
 
 import android.content.Context
 import android.content.SharedPreferences

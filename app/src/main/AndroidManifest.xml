@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToastApp">
-        <activity android:name="com.example.thirdTimeApp.MainActivity">
+        <activity android:name="com.example.task3.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

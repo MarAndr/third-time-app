@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.thirdTimeApp.MainActivity">
+    tools:context="com.example.task3.MainActivity">
 
     <TextView
         android:id="@+id/textView_mainActivity"
